@@ -23,16 +23,23 @@ h1 {
     display: grid;
     background-color: #A7E2E3;
     width: 100%;
-    height: 40%;
-    margin-left: 20%;
-    margin-right: 20%;
+    height: 35%;
+    margin-left: 25%;
+    margin-right: 25%;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
     
 }
 .playSquareStyle {
     border: 1px solid black;
-    font-size: 5rem;
+    font-size: 8rem;
     text-align: center;
-    justify-content: center;
+    background-color: #A7E2E3;
+
+    
+}
+
+.playSquareStyle:hover {
+    background-color: #587879;
+    transform: scale(1.01);
 }
