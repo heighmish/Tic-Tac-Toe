@@ -2,28 +2,34 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 body {
-    background-color: #D4C5E2;
+    background-color: #D4C5E2;  
+    margin: 0px;
 }
 h1 {
     background-color: #C9D7F8;
-    height: 5%;
+    height: 100%;
     text-align: center;
-    font-size: 50px;
+    font-size: 65px;
     font-weight: lighter;
+    margin: 0px;
+    margin-bottom: 2rem;
+    font-style: italic;
+    text-shadow: rgba(0, 100, 0, 0.274) 5px 5px;
 }
 .mainContainer {
     display: flex;
     height: 100%;
     width: 80%;
     margin-left: 10%;
-    margin-right: 10%;   
+    margin-right: 10%; 
+    
 }
 
 .gameBoardStyle {
     display: grid;
     background-color: #A7E2E3;
     width: 100%;
-    height: 35%;
+    height: 30rem;
     margin-left: 25%;
     margin-right: 25%;
     grid-template-rows: repeat(3, 1fr);
@@ -31,10 +37,12 @@ h1 {
     
 }
 .playSquareStyle {
-    border: 1px solid black;
-    font-size: 8rem;
+    border: 1px solid black; 
+    font-size: 7rem;
     text-align: center;
     background-color: #A7E2E3;
+    height: 100%;
+    width: 100%;
 
     
 }
@@ -42,4 +50,35 @@ h1 {
 .playSquareStyle:hover {
     background-color: #587879;
     transform: scale(1.01);
+}
+
+.currentTurn {
+    margin-bottom: 2.5%;
+    width: 35%;
+    display: flex;
+    margin-left: 32.5%;
+    flex-direction: row;
+}
+
+.turnStyle {
+    background-color: #A7E2E3;
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    border: solid black 1px;
+    border-radius: 10px;
+}
+
+.turnStyleActive {
+    background-color: #A7E2E3;
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    border: solid black 1px;
+    border-radius: 10px;
+    box-shadow: 
+        inset 60px 0 120px rgba(255, 0, 255, 0.753),  
+        inset -60px 0 120px #0ff;
+    font-style: italic;
+    transform: scale(1.05);
 }

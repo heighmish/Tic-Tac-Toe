@@ -10,8 +10,6 @@ const Player = (identifer, symbol, difficulty) => {
 const gameBoard = (() => {
     let board = ["", "", "", "", "", "", "", "", ""];
 
-
-
     const resetGame = () => {
         gameBoard.board = ["", "", "", "", "", "", "", "", ""];
         gameController.currentPlayer = gameController.P1;
@@ -30,6 +28,20 @@ const displayController = (() => {
             displayContainer.removeChild(displayContainer.firstChild);
         }
     }
+
+    const stylePlayerTurn = () => {
+        const P1Style = document.getElementById("P1");
+        const P2Style = document.getElementById("P2");
+        //console.log(gameController.currentPlayer.getId());
+        if (gameController.currentPlayer.getId() == gameController.P1.getId()) { //p1
+            P1Style.className = "turnStyleActive";
+            P2Style.className = "turnStyle";
+        } else if(gameController.currentPlayer.getId() == gameController.P2.getId()) { //p2
+            P2Style.className = "turnStyleActive";
+            P1Style.className = "turnStyle";
+        }
+    }
+
     const renderArray = (board) => {
         emptyContainer();
         board.forEach((element, index) => {
@@ -41,7 +53,9 @@ const displayController = (() => {
                 gameController.playMove(event);
             })
             displayContainer.appendChild(k);
-        });   
+            
+        }); 
+        stylePlayerTurn();  
     }
     return { renderArray, emptyContainer };
 })();
@@ -51,15 +65,14 @@ const gameController = (() => {
     const P2 = Player("Player 2", "O", "Human");
     let currentPlayer = P1;
     const changePlayer = () => {
-        if (currentPlayer == P1) { currentPlayer = P2;}
-        else { currentPlayer = P1;}
+        if (gameController.currentPlayer == P1) { gameController.currentPlayer = P2;}
+        else { gameController.currentPlayer = P1;}
     }
     const playMove = (event) => {
         //console.log(event.target);
         if (gameBoard.board[event.target.id] === "") {
-            gameBoard.board[event.target.id] = currentPlayer.getSym();
-            //console.log(gameBoard.board);
-            displayController.renderArray(gameBoard.board);
+            gameBoard.board[event.target.id] = gameController.currentPlayer.getSym();
+            //console.log(currentPlayer.getId());
             if (!isGameFinished()) {
                 changePlayer();
                 if (gameBoard.board.every(element => element !== "") === true) {
@@ -67,15 +80,16 @@ const gameController = (() => {
                     gameBoard.resetGame();
                 }
             } else {
-                alert(`${currentPlayer.getId()} has won the game!`);
+                alert(`${gameController.currentPlayer.getId()} has won the game!`);
                 gameBoard.resetGame();
             }
+            displayController.renderArray(gameBoard.board);
         } else {
             alert("Invalid move");
         }
     }
     const isGameFinished = () => {
-        const currSymbol = currentPlayer.getSym();
+        const currSymbol = gameController.currentPlayer.getSym();
         const winningCombinations = [
         [1, 2, 3],
         [4, 5, 6],
@@ -95,7 +109,7 @@ const gameController = (() => {
         })
         return bool;
     }
-    return { playMove, P1, P2 }
+    return { playMove, P1, P2, currentPlayer }
 })();
 
 
